@@ -15,15 +15,12 @@ gem 'rails-i18n'
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-
 group :development, :test do
-  gem 'sqlite3'
-  gem 'byebug',  '9.0.6', platform: :mri
-  gem 'faker'
-  #本来はここに入れるのが正しいかな？←あってた！
+	gem "sqlite3", "~> 1.4"
+	gem 'pg', group: :production
 end
 
-gem 'pg', group: :production
+
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma", "~> 5.0"
