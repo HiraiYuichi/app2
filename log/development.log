@@ -18506,3 +18506,917 @@ Migrating to AddAdminToUsers (20220313122421)
   [1m[36mTRANSACTION (37.4ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
   [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Pluck (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (524.6ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (74.2ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20220308021531)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220308021531"]]
+  [1m[36mTRANSACTION (115.6ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddIndexToUsersEmail (20220308024007)
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220308024007"]]
+  [1m[36mTRANSACTION (79.8ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddPasswordDigestToUsers (20220308025159)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.1ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220308025159"]]
+  [1m[36mTRANSACTION (69.9ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddRememberDigestToUsers (20220311030229)
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_digest" varchar[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220311030229"]]
+  [1m[36mTRANSACTION (64.4ms)[0m  [1m[36mcommit transaction[0m
+Migrating to AddAdminToUsers (20220313122421)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mALTER TABLE "users" ADD "admin" boolean DEFAULT 0[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20220313122421"]]
+  [1m[36mTRANSACTION (65.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.3ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2022-03-13 13:23:11.890889"], ["updated_at", "2022-03-13 13:23:11.890889"]]
+  [1m[36mTRANSACTION (74.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "Example User"], ["email", "example@railstutorial.org"], ["created_at", "2022-03-13 13:23:22.530213"], ["updated_at", "2022-03-13 13:23:22.530213"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 1]]
+  [1m[36mTRANSACTION (57.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-1@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "太田 隼人"], ["email", "example-1@railstutorial.org"], ["created_at", "2022-03-13 13:23:22.942919"], ["updated_at", "2022-03-13 13:23:22.942919"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (50.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-2@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山崎 陽"], ["email", "example-2@railstutorial.org"], ["created_at", "2022-03-13 13:23:23.062910"], ["updated_at", "2022-03-13 13:23:23.062910"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (46.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-3@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "松本 優花"], ["email", "example-3@railstutorial.org"], ["created_at", "2022-03-13 13:23:23.177530"], ["updated_at", "2022-03-13 13:23:23.177530"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (44.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.1ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-4@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "菊地 葵"], ["email", "example-4@railstutorial.org"], ["created_at", "2022-03-13 13:23:23.288754"], ["updated_at", "2022-03-13 13:23:23.288754"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (48.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-5@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山崎 颯"], ["email", "example-5@railstutorial.org"], ["created_at", "2022-03-13 13:23:23.404345"], ["updated_at", "2022-03-13 13:23:23.404345"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (59.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-6@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "丸山 奈々"], ["email", "example-6@railstutorial.org"], ["created_at", "2022-03-13 13:23:23.531124"], ["updated_at", "2022-03-13 13:23:23.531124"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (40.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-7@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "林 太一"], ["email", "example-7@railstutorial.org"], ["created_at", "2022-03-13 13:23:23.639413"], ["updated_at", "2022-03-13 13:23:23.639413"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (55.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-8@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "高橋 美月"], ["email", "example-8@railstutorial.org"], ["created_at", "2022-03-13 13:23:23.766541"], ["updated_at", "2022-03-13 13:23:23.766541"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (52.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-9@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "武田 優"], ["email", "example-9@railstutorial.org"], ["created_at", "2022-03-13 13:23:23.886082"], ["updated_at", "2022-03-13 13:23:23.886082"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (58.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-10@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "松本 美優"], ["email", "example-10@railstutorial.org"], ["created_at", "2022-03-13 13:23:24.010799"], ["updated_at", "2022-03-13 13:23:24.010799"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (55.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-11@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山下 翔太"], ["email", "example-11@railstutorial.org"], ["created_at", "2022-03-13 13:23:24.131528"], ["updated_at", "2022-03-13 13:23:24.131528"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (51.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-12@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "藤本 陽斗"], ["email", "example-12@railstutorial.org"], ["created_at", "2022-03-13 13:23:24.246426"], ["updated_at", "2022-03-13 13:23:24.246426"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (58.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-13@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "杉山 樹"], ["email", "example-13@railstutorial.org"], ["created_at", "2022-03-13 13:23:24.372249"], ["updated_at", "2022-03-13 13:23:24.372249"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (43.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-14@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "岡田 樹"], ["email", "example-14@railstutorial.org"], ["created_at", "2022-03-13 13:23:24.480691"], ["updated_at", "2022-03-13 13:23:24.480691"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (46.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-15@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "森 航"], ["email", "example-15@railstutorial.org"], ["created_at", "2022-03-13 13:23:24.592655"], ["updated_at", "2022-03-13 13:23:24.592655"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (43.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-16@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "工藤 諒"], ["email", "example-16@railstutorial.org"], ["created_at", "2022-03-13 13:23:24.702388"], ["updated_at", "2022-03-13 13:23:24.702388"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (44.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-17@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "小川 直樹"], ["email", "example-17@railstutorial.org"], ["created_at", "2022-03-13 13:23:24.815556"], ["updated_at", "2022-03-13 13:23:24.815556"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (43.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-18@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "杉山 杏"], ["email", "example-18@railstutorial.org"], ["created_at", "2022-03-13 13:23:24.925418"], ["updated_at", "2022-03-13 13:23:24.925418"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (55.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-19@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "岡本 茜"], ["email", "example-19@railstutorial.org"], ["created_at", "2022-03-13 13:23:25.049013"], ["updated_at", "2022-03-13 13:23:25.049013"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (33.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-20@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "谷口 太郎"], ["email", "example-20@railstutorial.org"], ["created_at", "2022-03-13 13:23:25.150078"], ["updated_at", "2022-03-13 13:23:25.150078"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (43.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-21@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山崎 悠斗"], ["email", "example-21@railstutorial.org"], ["created_at", "2022-03-13 13:23:25.260292"], ["updated_at", "2022-03-13 13:23:25.260292"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (66.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-22@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "小野 結菜"], ["email", "example-22@railstutorial.org"], ["created_at", "2022-03-13 13:23:25.393935"], ["updated_at", "2022-03-13 13:23:25.393935"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (50.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-23@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "高田 優菜"], ["email", "example-23@railstutorial.org"], ["created_at", "2022-03-13 13:23:25.510879"], ["updated_at", "2022-03-13 13:23:25.510879"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (46.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-24@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "藤井 彩"], ["email", "example-24@railstutorial.org"], ["created_at", "2022-03-13 13:23:25.622909"], ["updated_at", "2022-03-13 13:23:25.622909"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (56.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-25@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山田 愛美"], ["email", "example-25@railstutorial.org"], ["created_at", "2022-03-13 13:23:25.753503"], ["updated_at", "2022-03-13 13:23:25.753503"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (38.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-26@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "佐々木 健太"], ["email", "example-26@railstutorial.org"], ["created_at", "2022-03-13 13:23:25.862077"], ["updated_at", "2022-03-13 13:23:25.862077"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (49.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-27@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "菅原 結"], ["email", "example-27@railstutorial.org"], ["created_at", "2022-03-13 13:23:25.980231"], ["updated_at", "2022-03-13 13:23:25.980231"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (43.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-28@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "吉田 碧"], ["email", "example-28@railstutorial.org"], ["created_at", "2022-03-13 13:23:26.090766"], ["updated_at", "2022-03-13 13:23:26.090766"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (44.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-29@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "石井 美穂"], ["email", "example-29@railstutorial.org"], ["created_at", "2022-03-13 13:23:26.199126"], ["updated_at", "2022-03-13 13:23:26.199126"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (47.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-30@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "上田 優"], ["email", "example-30@railstutorial.org"], ["created_at", "2022-03-13 13:23:26.311756"], ["updated_at", "2022-03-13 13:23:26.311756"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (51.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-31@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "松田 悠斗"], ["email", "example-31@railstutorial.org"], ["created_at", "2022-03-13 13:23:26.430544"], ["updated_at", "2022-03-13 13:23:26.430544"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (50.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-32@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "小島 杏"], ["email", "example-32@railstutorial.org"], ["created_at", "2022-03-13 13:23:26.547366"], ["updated_at", "2022-03-13 13:23:26.547366"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (39.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-33@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "田村 大翔"], ["email", "example-33@railstutorial.org"], ["created_at", "2022-03-13 13:23:26.653324"], ["updated_at", "2022-03-13 13:23:26.653324"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (93.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-34@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "石川 優斗"], ["email", "example-34@railstutorial.org"], ["created_at", "2022-03-13 13:23:26.814098"], ["updated_at", "2022-03-13 13:23:26.814098"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (34.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-35@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "渡辺 響"], ["email", "example-35@railstutorial.org"], ["created_at", "2022-03-13 13:23:26.916798"], ["updated_at", "2022-03-13 13:23:26.916798"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (38.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-36@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "佐野 仁"], ["email", "example-36@railstutorial.org"], ["created_at", "2022-03-13 13:23:27.021702"], ["updated_at", "2022-03-13 13:23:27.021702"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (37.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-37@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "岩崎 諒"], ["email", "example-37@railstutorial.org"], ["created_at", "2022-03-13 13:23:27.125482"], ["updated_at", "2022-03-13 13:23:27.125482"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (38.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-38@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "池田 大樹"], ["email", "example-38@railstutorial.org"], ["created_at", "2022-03-13 13:23:27.231172"], ["updated_at", "2022-03-13 13:23:27.231172"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (34.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-39@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "大塚 桜"], ["email", "example-39@railstutorial.org"], ["created_at", "2022-03-13 13:23:27.332237"], ["updated_at", "2022-03-13 13:23:27.332237"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (34.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-40@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "杉山 響"], ["email", "example-40@railstutorial.org"], ["created_at", "2022-03-13 13:23:27.432490"], ["updated_at", "2022-03-13 13:23:27.432490"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (38.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-41@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "青木 優"], ["email", "example-41@railstutorial.org"], ["created_at", "2022-03-13 13:23:27.537516"], ["updated_at", "2022-03-13 13:23:27.537516"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (50.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-42@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "佐々木 悠"], ["email", "example-42@railstutorial.org"], ["created_at", "2022-03-13 13:23:27.654395"], ["updated_at", "2022-03-13 13:23:27.654395"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (47.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-43@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "木下 凛"], ["email", "example-43@railstutorial.org"], ["created_at", "2022-03-13 13:23:27.773535"], ["updated_at", "2022-03-13 13:23:27.773535"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (38.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-44@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "鈴木 結菜"], ["email", "example-44@railstutorial.org"], ["created_at", "2022-03-13 13:23:27.881429"], ["updated_at", "2022-03-13 13:23:27.881429"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (43.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-45@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "内田 陽斗"], ["email", "example-45@railstutorial.org"], ["created_at", "2022-03-13 13:23:27.991196"], ["updated_at", "2022-03-13 13:23:27.991196"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (45.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-46@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "斎藤 颯太"], ["email", "example-46@railstutorial.org"], ["created_at", "2022-03-13 13:23:28.103872"], ["updated_at", "2022-03-13 13:23:28.103872"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (44.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-47@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "高木 颯"], ["email", "example-47@railstutorial.org"], ["created_at", "2022-03-13 13:23:28.218866"], ["updated_at", "2022-03-13 13:23:28.218866"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (50.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-48@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "木村 仁"], ["email", "example-48@railstutorial.org"], ["created_at", "2022-03-13 13:23:28.334780"], ["updated_at", "2022-03-13 13:23:28.334780"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (58.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-49@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "三浦 大翔"], ["email", "example-49@railstutorial.org"], ["created_at", "2022-03-13 13:23:28.459765"], ["updated_at", "2022-03-13 13:23:28.459765"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (38.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-50@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "原田 陽太"], ["email", "example-50@railstutorial.org"], ["created_at", "2022-03-13 13:23:28.565469"], ["updated_at", "2022-03-13 13:23:28.565469"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (38.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-51@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "増田 瑛太"], ["email", "example-51@railstutorial.org"], ["created_at", "2022-03-13 13:23:28.671888"], ["updated_at", "2022-03-13 13:23:28.671888"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (46.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-52@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "林 琴音"], ["email", "example-52@railstutorial.org"], ["created_at", "2022-03-13 13:23:28.787276"], ["updated_at", "2022-03-13 13:23:28.787276"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (45.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-53@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "松田 悠人"], ["email", "example-53@railstutorial.org"], ["created_at", "2022-03-13 13:23:28.900280"], ["updated_at", "2022-03-13 13:23:28.900280"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (48.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-54@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "増田 優奈"], ["email", "example-54@railstutorial.org"], ["created_at", "2022-03-13 13:23:29.016699"], ["updated_at", "2022-03-13 13:23:29.016699"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (31.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-55@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "福田 優"], ["email", "example-55@railstutorial.org"], ["created_at", "2022-03-13 13:23:29.115017"], ["updated_at", "2022-03-13 13:23:29.115017"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (49.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-56@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "木村 颯"], ["email", "example-56@railstutorial.org"], ["created_at", "2022-03-13 13:23:29.231420"], ["updated_at", "2022-03-13 13:23:29.231420"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (44.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-57@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "高田 杏奈"], ["email", "example-57@railstutorial.org"], ["created_at", "2022-03-13 13:23:29.344451"], ["updated_at", "2022-03-13 13:23:29.344451"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (48.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-58@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "千葉 舞"], ["email", "example-58@railstutorial.org"], ["created_at", "2022-03-13 13:23:29.458883"], ["updated_at", "2022-03-13 13:23:29.458883"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (47.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-59@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "村田 玲奈"], ["email", "example-59@railstutorial.org"], ["created_at", "2022-03-13 13:23:29.574061"], ["updated_at", "2022-03-13 13:23:29.574061"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (43.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-60@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "松田 美咲"], ["email", "example-60@railstutorial.org"], ["created_at", "2022-03-13 13:23:29.684691"], ["updated_at", "2022-03-13 13:23:29.684691"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (45.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-61@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "中村 仁"], ["email", "example-61@railstutorial.org"], ["created_at", "2022-03-13 13:23:29.798341"], ["updated_at", "2022-03-13 13:23:29.798341"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (47.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-62@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "佐々木 美羽"], ["email", "example-62@railstutorial.org"], ["created_at", "2022-03-13 13:23:29.914014"], ["updated_at", "2022-03-13 13:23:29.914014"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (47.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-63@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "小島 優斗"], ["email", "example-63@railstutorial.org"], ["created_at", "2022-03-13 13:23:30.028854"], ["updated_at", "2022-03-13 13:23:30.028854"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (39.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-64@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "小山 健太"], ["email", "example-64@railstutorial.org"], ["created_at", "2022-03-13 13:23:30.141081"], ["updated_at", "2022-03-13 13:23:30.141081"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (45.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-65@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "石井 亮"], ["email", "example-65@railstutorial.org"], ["created_at", "2022-03-13 13:23:30.255301"], ["updated_at", "2022-03-13 13:23:30.255301"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (58.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-66@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "三浦 空"], ["email", "example-66@railstutorial.org"], ["created_at", "2022-03-13 13:23:30.380123"], ["updated_at", "2022-03-13 13:23:30.380123"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (42.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-67@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "柴田 太一"], ["email", "example-67@railstutorial.org"], ["created_at", "2022-03-13 13:23:30.489192"], ["updated_at", "2022-03-13 13:23:30.489192"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (38.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-68@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "上野 美咲"], ["email", "example-68@railstutorial.org"], ["created_at", "2022-03-13 13:23:30.594615"], ["updated_at", "2022-03-13 13:23:30.594615"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (62.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-69@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "酒井 大輔"], ["email", "example-69@railstutorial.org"], ["created_at", "2022-03-13 13:23:30.723903"], ["updated_at", "2022-03-13 13:23:30.723903"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (47.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-70@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "上野 さくら"], ["email", "example-70@railstutorial.org"], ["created_at", "2022-03-13 13:23:30.837526"], ["updated_at", "2022-03-13 13:23:30.837526"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (52.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-71@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "藤井 海斗"], ["email", "example-71@railstutorial.org"], ["created_at", "2022-03-13 13:23:30.955246"], ["updated_at", "2022-03-13 13:23:30.955246"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (45.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-72@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山下 航"], ["email", "example-72@railstutorial.org"], ["created_at", "2022-03-13 13:23:31.068352"], ["updated_at", "2022-03-13 13:23:31.068352"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (57.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-73@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "松本 莉子"], ["email", "example-73@railstutorial.org"], ["created_at", "2022-03-13 13:23:31.190484"], ["updated_at", "2022-03-13 13:23:31.190484"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (75.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-74@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "岩崎 悠真"], ["email", "example-74@railstutorial.org"], ["created_at", "2022-03-13 13:23:31.330012"], ["updated_at", "2022-03-13 13:23:31.330012"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (45.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-75@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "大野 智子"], ["email", "example-75@railstutorial.org"], ["created_at", "2022-03-13 13:23:31.441913"], ["updated_at", "2022-03-13 13:23:31.441913"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (43.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-76@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "岡本 遥"], ["email", "example-76@railstutorial.org"], ["created_at", "2022-03-13 13:23:31.552613"], ["updated_at", "2022-03-13 13:23:31.552613"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (43.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-77@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "大塚 美咲"], ["email", "example-77@railstutorial.org"], ["created_at", "2022-03-13 13:23:31.660608"], ["updated_at", "2022-03-13 13:23:31.660608"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (45.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-78@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "森田 響"], ["email", "example-78@railstutorial.org"], ["created_at", "2022-03-13 13:23:31.772703"], ["updated_at", "2022-03-13 13:23:31.772703"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (60.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-79@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "斎藤 玲奈"], ["email", "example-79@railstutorial.org"], ["created_at", "2022-03-13 13:23:31.896067"], ["updated_at", "2022-03-13 13:23:31.896067"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (66.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-80@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "清水 桜"], ["email", "example-80@railstutorial.org"], ["created_at", "2022-03-13 13:23:32.024663"], ["updated_at", "2022-03-13 13:23:32.024663"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (35.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-81@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山本 彩花"], ["email", "example-81@railstutorial.org"], ["created_at", "2022-03-13 13:23:32.122541"], ["updated_at", "2022-03-13 13:23:32.122541"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (47.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-82@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "福田 一郎"], ["email", "example-82@railstutorial.org"], ["created_at", "2022-03-13 13:23:32.232130"], ["updated_at", "2022-03-13 13:23:32.232130"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (35.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-83@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山口 彩乃"], ["email", "example-83@railstutorial.org"], ["created_at", "2022-03-13 13:23:32.331049"], ["updated_at", "2022-03-13 13:23:32.331049"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (41.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-84@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山田 優衣"], ["email", "example-84@railstutorial.org"], ["created_at", "2022-03-13 13:23:32.433350"], ["updated_at", "2022-03-13 13:23:32.433350"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (103.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-85@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "井上 優斗"], ["email", "example-85@railstutorial.org"], ["created_at", "2022-03-13 13:23:32.599529"], ["updated_at", "2022-03-13 13:23:32.599529"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (39.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-86@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "武田 愛"], ["email", "example-86@railstutorial.org"], ["created_at", "2022-03-13 13:23:32.702600"], ["updated_at", "2022-03-13 13:23:32.702600"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (35.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-87@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "岡田 優"], ["email", "example-87@railstutorial.org"], ["created_at", "2022-03-13 13:23:32.805204"], ["updated_at", "2022-03-13 13:23:32.805204"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (33.6ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-88@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "佐野 舞"], ["email", "example-88@railstutorial.org"], ["created_at", "2022-03-13 13:23:32.904282"], ["updated_at", "2022-03-13 13:23:32.904282"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (47.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-89@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "久保 亮太"], ["email", "example-89@railstutorial.org"], ["created_at", "2022-03-13 13:23:33.019137"], ["updated_at", "2022-03-13 13:23:33.019137"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (45.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-90@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山下 結菜"], ["email", "example-90@railstutorial.org"], ["created_at", "2022-03-13 13:23:33.132072"], ["updated_at", "2022-03-13 13:23:33.132072"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (44.5ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-91@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山田 亮太"], ["email", "example-91@railstutorial.org"], ["created_at", "2022-03-13 13:23:33.244964"], ["updated_at", "2022-03-13 13:23:33.244964"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (51.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-92@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山本 美桜"], ["email", "example-92@railstutorial.org"], ["created_at", "2022-03-13 13:23:33.362480"], ["updated_at", "2022-03-13 13:23:33.362480"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (49.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-93@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "山崎 葵"], ["email", "example-93@railstutorial.org"], ["created_at", "2022-03-13 13:23:33.476260"], ["updated_at", "2022-03-13 13:23:33.476260"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (32.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-94@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "小川 智子"], ["email", "example-94@railstutorial.org"], ["created_at", "2022-03-13 13:23:33.573562"], ["updated_at", "2022-03-13 13:23:33.573562"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (59.7ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-95@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "藤原 翔太"], ["email", "example-95@railstutorial.org"], ["created_at", "2022-03-13 13:23:33.700114"], ["updated_at", "2022-03-13 13:23:33.700114"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (65.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-96@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "松尾 大翔"], ["email", "example-96@railstutorial.org"], ["created_at", "2022-03-13 13:23:33.829990"], ["updated_at", "2022-03-13 13:23:33.829990"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (89.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-97@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "坂本 優花"], ["email", "example-97@railstutorial.org"], ["created_at", "2022-03-13 13:23:33.981350"], ["updated_at", "2022-03-13 13:23:33.981350"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (53.8ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-98@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "谷口 瑛太"], ["email", "example-98@railstutorial.org"], ["created_at", "2022-03-13 13:23:34.095648"], ["updated_at", "2022-03-13 13:23:34.095648"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (66.3ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "example-99@railstutorial.org"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "remember_digest", "admin") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "藤本 翔"], ["email", "example-99@railstutorial.org"], ["created_at", "2022-03-13 13:23:34.225016"], ["updated_at", "2022-03-13 13:23:34.225016"], ["password_digest", "[FILTERED]"], ["remember_digest", nil], ["admin", 0]]
+  [1m[36mTRANSACTION (58.7ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for ::1 at 2022-03-13 22:24:07 +0900
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mActiveRecord::SchemaMigration Pluck (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by StaticPagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 2117.2ms | Allocations: 151222)
+  Rendered layouts/_shim.html.erb (Duration: 2.5ms | Allocations: 118)
+  Rendered layouts/_header.html.erb (Duration: 4.7ms | Allocations: 466)
+  Rendered layouts/_footer.html.erb (Duration: 6.2ms | Allocations: 196)
+  Rendered layout layouts/application.html.erb (Duration: 2155.5ms | Allocations: 158117)
+Completed 200 OK in 2184ms (Views: 2166.5ms | ActiveRecord: 0.0ms | Allocations: 164035)
+
+
+Started GET "/login" for ::1 at 2022-03-13 22:24:12 +0900
+Processing by SessionsController#new as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering sessions/new.html.erb within layouts/application
+  Rendered sessions/new.html.erb within layouts/application (Duration: 952.9ms | Allocations: 442595)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_header.html.erb (Duration: 0.4ms | Allocations: 101)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 965.3ms | Allocations: 448437)
+Completed 200 OK in 971ms (Views: 969.7ms | ActiveRecord: 0.0ms | Allocations: 449165)
+
+
+Started POST "/login" for ::1 at 2022-03-13 22:24:22 +0900
+Processing by SessionsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "session"=>{"email"=>"example@railstutorial.org", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"ログインする"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "example@railstutorial.org"], ["LIMIT", 1]]
+  ↳ app/controllers/sessions_controller.rb:9:in `create'
+Redirected to http://localhost:3000/users/1
+Completed 302 Found in 110ms (ActiveRecord: 2.8ms | Allocations: 8259)
+
+
+Started GET "/users/1" for ::1 at 2022-03-13 22:24:22 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 1.9ms | Allocations: 220)
+  Rendered layouts/_shim.html.erb (Duration: 0.5ms | Allocations: 13)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 3.8ms | Allocations: 1454)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 27.5ms | Allocations: 7431)
+Completed 200 OK in 39ms (Views: 31.7ms | ActiveRecord: 0.6ms | Allocations: 9234)
+
+
+Started GET "/users/1" for ::1 at 2022-03-13 22:24:27 +0900
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `show'
+  Rendering layout layouts/application.html.erb
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (Duration: 0.3ms | Allocations: 48)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 3.9ms | Allocations: 730)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 23.7ms | Allocations: 6537)
+Completed 200 OK in 28ms (Views: 24.9ms | ActiveRecord: 0.4ms | Allocations: 7242)
+
+
+Started GET "/users/1/edit" for ::1 at 2022-03-13 22:24:30 +0900
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:84:in `correct_user'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:45:in `edit'
+  Rendering layout layouts/application.html.erb
+  Rendering users/edit.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (Duration: 2.2ms | Allocations: 230)
+  Rendered users/edit.html.erb within layouts/application (Duration: 23.9ms | Allocations: 2068)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 12)
+  Rendered layouts/_header.html.erb (Duration: 1.0ms | Allocations: 236)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 44.4ms | Allocations: 8032)
+Completed 200 OK in 94ms (Views: 46.1ms | ActiveRecord: 0.6ms | Allocations: 9795)
+
+
+Started GET "/users" for ::1 at 2022-03-13 22:24:32 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 33.4ms | Allocations: 6971)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 25.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 34.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 31.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 40.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 40.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 37.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 34.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 45.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 31.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 42.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 29.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 17.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 13.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 13.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 13.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 12.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 13.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 18.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 13.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 12.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 12.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 17.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 15.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 15.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 15.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 14.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 14.3ms | Allocations: 6633)
+  Rendered users/index.html.erb within layouts/application (Duration: 749.3ms | Allocations: 205488)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_header.html.erb (Duration: 1.2ms | Allocations: 230)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 761.2ms | Allocations: 211454)
+Completed 200 OK in 766ms (Views: 761.9ms | ActiveRecord: 0.6ms | Allocations: 212430)
+
+
+Started GET "/" for ::1 at 2022-03-13 22:24:37 +0900
+Processing by StaticPagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 1.0ms | Allocations: 639)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 2.6ms | Allocations: 746)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 12.0ms | Allocations: 6994)
+Completed 200 OK in 13ms (Views: 12.4ms | ActiveRecord: 0.2ms | Allocations: 7237)
+
+
+Started GET "/" for ::1 at 2022-03-13 22:24:49 +0900
+Processing by StaticPagesController#home as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (Duration: 2.7ms | Allocations: 635)
+  Rendered layouts/_shim.html.erb (Duration: 0.8ms | Allocations: 13)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 10.4ms | Allocations: 734)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 33.1ms | Allocations: 6987)
+Completed 200 OK in 35ms (Views: 33.9ms | ActiveRecord: 0.5ms | Allocations: 7229)
+
+
+Started GET "/help" for ::1 at 2022-03-13 22:24:51 +0900
+Processing by StaticPagesController#help as HTML
+  Rendering layout layouts/application.html.erb
+  Rendering static_pages/help.html.erb within layouts/application
+  Rendered static_pages/help.html.erb within layouts/application (Duration: 1.3ms | Allocations: 148)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendered layouts/_header.html.erb (Duration: 3.9ms | Allocations: 747)
+  Rendered layouts/_footer.html.erb (Duration: 0.3ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 25.5ms | Allocations: 6667)
+Completed 200 OK in 28ms (Views: 27.0ms | ActiveRecord: 0.2ms | Allocations: 6961)
+
+
+Started GET "/users" for ::1 at 2022-03-13 22:24:53 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Count (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 46.5ms | Allocations: 6736)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 37.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 50.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 27.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 32.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 42.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 35.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 43.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 39.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 33.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 29.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 45.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 32.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 33.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 35.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 46.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 40.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 46.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 51.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 38.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 38.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 46.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 34.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 42.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 35.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 20.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 57.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 48.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 39.1ms | Allocations: 6633)
+  Rendered users/index.html.erb within layouts/application (Duration: 1226.9ms | Allocations: 204390)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_header.html.erb (Duration: 1.5ms | Allocations: 230)
+  Rendered layouts/_footer.html.erb (Duration: 0.5ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 1251.1ms | Allocations: 210356)
+Completed 200 OK in 1255ms (Views: 1251.2ms | ActiveRecord: 1.1ms | Allocations: 211283)
+
+
+Started GET "/users" for ::1 at 2022-03-13 22:26:17 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Count (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 44.4ms | Allocations: 6947)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 39.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 30.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 33.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 36.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 36.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 43.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 46.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 57.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 31.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 16.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 40.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 33.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 27.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 22.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 24.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 24.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 24.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 19.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 18.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 28.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 23.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 13.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 16.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 30.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 19.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 25.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 24.2ms | Allocations: 6633)
+  Rendered users/index.html.erb within layouts/application (Duration: 943.6ms | Allocations: 204895)
+  Rendered layouts/_shim.html.erb (Duration: 1.1ms | Allocations: 120)
+  Rendered layouts/_header.html.erb (Duration: 3.6ms | Allocations: 565)
+  Rendered layouts/_footer.html.erb (Duration: 1.0ms | Allocations: 188)
+  Rendered layout layouts/application.html.erb (Duration: 964.2ms | Allocations: 211936)
+Completed 200 OK in 975ms (Views: 966.4ms | ActiveRecord: 2.4ms | Allocations: 213495)
+
+
+Started GET "/users" for ::1 at 2022-03-13 22:27:22 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Count (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 39.7ms | Allocations: 6947)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 43.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 39.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 32.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 42.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 45.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 44.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 47.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 39.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 46.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 43.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 36.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 34.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 13.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 29.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 34.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 34.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 27.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 22.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 16.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 27.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 23.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 28.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 24.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 19.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 48.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 31.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 31.1ms | Allocations: 6633)
+  Rendered users/index.html.erb within layouts/application (Duration: 1057.0ms | Allocations: 204896)
+  Rendered layouts/_shim.html.erb (Duration: 1.3ms | Allocations: 116)
+  Rendered layouts/_header.html.erb (Duration: 4.5ms | Allocations: 569)
+  Rendered layouts/_footer.html.erb (Duration: 1.7ms | Allocations: 188)
+  Rendered layout layouts/application.html.erb (Duration: 1083.9ms | Allocations: 211985)
+Completed 200 OK in 1096ms (Views: 1089.1ms | ActiveRecord: 2.6ms | Allocations: 213569)
+
+
+Started GET "/users" for ::1 at 2022-03-13 22:27:45 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Count (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 49.2ms | Allocations: 6948)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 33.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 48.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 40.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 29.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 54.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 40.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 37.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 43.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 48.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 24.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 17.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 39.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 15.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 30.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 28.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 30.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 29.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 20.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 25.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 20.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 20.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 28.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 27.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 19.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 49.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 18.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 41.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 38.6ms | Allocations: 6633)
+  Rendered users/index.html.erb within layouts/application (Duration: 1027.8ms | Allocations: 204892)
+  Rendered layouts/_shim.html.erb (Duration: 2.0ms | Allocations: 117)
+  Rendered layouts/_header.html.erb (Duration: 3.2ms | Allocations: 569)
+  Rendered layouts/_footer.html.erb (Duration: 1.1ms | Allocations: 188)
+  Rendered layout layouts/application.html.erb (Duration: 1058.2ms | Allocations: 211979)
+Completed 200 OK in 1071ms (Views: 1063.6ms | ActiveRecord: 1.3ms | Allocations: 213550)
+
+
+Started GET "/users" for ::1 at 2022-03-13 22:27:48 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 27.5ms | Allocations: 6736)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 31.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 14.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 16.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 16.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 20.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 28.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 21.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 19.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 24.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 35.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 13.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 18.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 24.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 24.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 22.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 19.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 39.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 28.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 17.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 28.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 20.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 16.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 13.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 12.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 12.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 19.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 11.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 11.4ms | Allocations: 6633)
+  Rendered users/index.html.erb within layouts/application (Duration: 668.6ms | Allocations: 204390)
+  Rendered layouts/_shim.html.erb (Duration: 0.1ms | Allocations: 13)
+  Rendered layouts/_header.html.erb (Duration: 0.6ms | Allocations: 233)
+  Rendered layouts/_footer.html.erb (Duration: 0.1ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 678.1ms | Allocations: 210359)
+Completed 200 OK in 681ms (Views: 678.3ms | ActiveRecord: 0.5ms | Allocations: 211279)
+
+
+Started GET "/users" for ::1 at 2022-03-13 22:27:50 +0900
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:59:in `current_user'
+  Rendering layout layouts/application.html.erb
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Count (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  ↳ app/views/users/index.html.erb:4
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" LIMIT ? OFFSET ?[0m  [["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:7
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 23.3ms | Allocations: 6730)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 21.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 14.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 20.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 20.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 19.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 8.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 11.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 9.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 37.8ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 14.1ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 18.6ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 31.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 14.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.0ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 29.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 37.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 39.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 28.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 28.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 18.2ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 24.9ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.4ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 28.7ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 40.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 27.5ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 37.3ms | Allocations: 6633)
+  Rendered collection of users/_user.html.erb [30 times] (Duration: 26.7ms | Allocations: 6633)
+  Rendered users/index.html.erb within layouts/application (Duration: 779.5ms | Allocations: 204377)
+  Rendered layouts/_shim.html.erb (Duration: 0.2ms | Allocations: 13)
+  Rendered layouts/_header.html.erb (Duration: 1.4ms | Allocations: 227)
+  Rendered layouts/_footer.html.erb (Duration: 0.2ms | Allocations: 30)
+  Rendered layout layouts/application.html.erb (Duration: 807.1ms | Allocations: 210276)
+Completed 200 OK in 811ms (Views: 807.4ms | ActiveRecord: 0.7ms | Allocations: 211203)
+
+
