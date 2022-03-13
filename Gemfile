@@ -15,11 +15,8 @@ gem 'rails-i18n'
 gem "sprockets-rails"
 
 # Use sqlite3 as the database for Active Record
-group :development, :test do
-	gem "sqlite3", "~> 1.4"
-	gem 'pg', group: :production
-end
-
+gem 'sqlite3', group: :development
+gem 'pg', group: :production
 
 
 # Use the Puma web server [https://github.com/puma/puma]
