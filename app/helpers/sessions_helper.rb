@@ -1,5 +1,17 @@
 module SessionsHelper
-
+    # 記憶したURL (もしくはデフォルト値) にリダイレクト
+    def redirect_back_or(default)
+      # リダイレクト（session[:forwarding_url]の値、値がnilデフォルト値へ)
+      redirect_to(session[:forwarding_url] || default)
+      # session変数の:forwarding_urlキーの値をdelete
+      session.delete(:forwarding_url)
+    end
+   
+    # アクセスしようとしたURLを覚えておく
+    def store_location
+      # session変数の:forwarding_urlキーに格納 request.original_urlで取得したリクエスト先urlにGETリクエストが送られたときのみ
+      session[:forwarding_url] = request.original_url if request.get?
+    end
     
 
      # 渡されたユーザーでログインする
@@ -47,7 +59,10 @@ module SessionsHelper
       @current_user ||= User.find_by(id: session[:user_id])
     end
   end
-
+   # 渡されたユーザーがログイン済みユーザーであればtrueを返す
+  def current_user?(user)
+    user == current_user
+  end
   # ユーザーがログインしていればtrue、その他ならfalseを返す
   def logged_in?
         !current_user.nil?

@@ -5,3 +5,23 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+# テーブル名.create!　カラムと持たせたい値
+User.create!(name:  "Example User",
+             email: "example@railstutorial.org",
+             password:              "foobar",
+             password_confirmation: "foobar",
+              #管理者に設定
+              admin: true)
+ 
+# 99回繰り返す（timesメソッド）
+99.times do |n|
+  # nameに代入　Faker::Name.name
+  name  = Faker::Name.name
+  # emailに代入　example-#{n+1}@railstutorial.org　←それぞれのアドレスが変わるような指定
+  email = "example-#{n+1}@railstutorial.org"
+  password = "password"
+  User.create!(name:  name,
+               email: email,
+               password:              password,
+               password_confirmation: password)
+end
